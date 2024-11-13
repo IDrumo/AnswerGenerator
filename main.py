@@ -1,5 +1,6 @@
 import os
 import random
+import copy
 import re
 import tkinter as tk
 import zipfile
@@ -129,7 +130,7 @@ class AnswerGenerator:
             num_errors = self._generate_errors(max_errors)
 
             # Копируем структуру вопросов и ответов
-            student_answer.answers = self.question_answer_file.questions.copy()
+            student_answer.answers = copy.deepcopy(self.question_answer_file.questions)
 
             # Выбираем случайные вопросы для ошибок
             error_indices = random.sample(
@@ -205,16 +206,6 @@ class AnswerGenerator:
 
                     # Добавляем пустую строку-разделитель
                     f.write("\n")
-
-                #     # Добавляем информацию о количестве ошибок, если они есть
-                #     if question_number in data.error_questions:
-                #         f.write("Ошибка: Да\n")
-                #     else:
-                #         f.write("Ошибка: Нет\n")
-                #
-                # # Записываем общее количество ошибок
-                # f.write(f"Общее количество ошибок: {data.error_count}\n")
-
 
 # Все предыдущие классы остаются без изменений
 
